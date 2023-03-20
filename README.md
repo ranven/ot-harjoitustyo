@@ -1,5 +1,5 @@
-<h2>tervehdys</h2>
-<b>tämä</b> on <i>testi</i><hr/>
-<h5>testaan</h5>
-<p><b>markdownin</b> käyttöä</p>
-<small>jännittävää</b>
+<h2>Ohjelmistotekniikka, harjoitustyö</h2>
+<h3>Tehtävät</h3>
+<h4>Viikko 1</h4>
+<p><a href="https://github.com/ranven/ot-harjoitustyo/blob/master/laskarit/viikko1/gitlog.txt">gitlog.txt</a></p>
+<p><a href="https://github.com/ranven/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt">komentorivi.txt</a></p>
