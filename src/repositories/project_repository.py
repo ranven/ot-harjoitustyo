@@ -5,6 +5,11 @@ class ProjectRepository:
     def __init__(self, connection):
         self._connection = connection
     
+    def delete_all(self):
+        cursor = self._connection.cursor()
+        cursor.execute("DELETE FROM projects")
+        self._connection.commit()
+    
     def find_all(self):
         cursor = self._connection.cursor()
         cursor.execute("SELECT * FROM projects")
@@ -12,7 +17,6 @@ class ProjectRepository:
         return [Project(row["title"], row["created_at"]) for row in rows]
     
     def create(self, title):
-        print(title)
         cursor = self._connection.cursor()
         cursor.execute("INSERT INTO projects (title) values (?)", [title])
         self._connection.commit()
