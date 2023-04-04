@@ -1,4 +1,3 @@
-from tkinter import ttk
 from ui.project_view import ProjectView
 
 class UI:
