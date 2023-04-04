@@ -7,9 +7,16 @@ class ProjectRepository:
     
     def find_all(self):
         cursor = self._connection.cursor()
-        cursor.execute("SELECT * FROM projects;")
+        cursor.execute("SELECT * FROM projects")
         rows = cursor.fetchall()
         return [Project(row["title"], row["created_at"]) for row in rows]
+    
+    def create(self, title):
+        print(title)
+        cursor = self._connection.cursor()
+        cursor.execute("INSERT INTO projects (title) values (?)", [title])
+        self._connection.commit()
+        return title
  
 connection = get_db_connection()    
 project_repository = ProjectRepository(connection)

@@ -11,5 +11,8 @@ class ProjectService:
     
     def get_all_projects(self):
         return list(self._project_repository.find_all())
+    
+    def create_project(self, title):
+        return self._project_repository.create(title)
 
 project_service = ProjectService()

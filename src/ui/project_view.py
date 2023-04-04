@@ -43,6 +43,7 @@ class ProjectView:
         self._frame = None
         self._project_list_view = None
         self._project_list_frame = None
+        self._create_project = None
         self._initialize()
         
     def pack(self):
@@ -51,7 +52,7 @@ class ProjectView:
     def destroy(self):
         self._frame.destroy()
         
-    def initialize_project_list(self):
+    def _initialize_project_list(self):
         if self._project_list_view:
             self._project_list_view.destroy()
             
@@ -59,10 +60,24 @@ class ProjectView:
         self._project_list_view = ProjectListView(self._project_list_frame, projects)
         self._project_list_view.pack()
         
+    def _handle_add_project(self):
+        project_title = self._create_project.get()
+        if project_title:
+            project_service.create_project(project_title)
+            self._initialize_project_list()
+            self._create_project.delete(0, constants.END)
+        
+    def _initialize_footer(self):
+        self._create_project = ttk.Entry(master=self._frame)
+        create_project_submit = ttk.Button(master=self._frame, text="Add project", command=self._handle_add_project)
+        self._create_project.grid(row=2, column=0)
+        create_project_submit.grid(row=2, column=1)
+        
     def _initialize(self):
         self._frame = ttk.Frame(master=self._root)
         self._project_list_frame = ttk.Frame(master=self._frame)
-        self.initialize_project_list()
+        self._initialize_project_list()
+        self._initialize_footer()
         self._project_list_frame.grid(
             row=0,
             column=0,
